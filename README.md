@@ -1,4 +1,4 @@
 testshuffler
 ============
 
-A multiple-choide
+A multiple-choice tests generator
