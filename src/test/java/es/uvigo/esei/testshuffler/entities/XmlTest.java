@@ -11,6 +11,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
+import static es.uvigo.esei.testshuffler.Utils.readFromXML;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -94,15 +95,7 @@ public class XmlTest {
 
     @Test(expected=UnmarshalException.class)
     public void testXmlInput() throws JAXBException, SAXException {
-        final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/XML/XMLSchema/v1.1");
-        final Schema schema = schemaFactory.newSchema(new File("src/main/resources/questionsdb.xsd"));
-
-        final JAXBContext context = JAXBContext.newInstance(QuestionsDB.class);
-        final Unmarshaller unmarshaller = context.createUnmarshaller();
-        unmarshaller.setSchema(schema);
-        unmarshaller.setEventHandler(new ValidationEventCollector());
-
-        System.out.println(unmarshaller.unmarshal(new File("src/test/resources/questionsdb.xml")));
-        System.out.println(unmarshaller.unmarshal(new File("src/test/resources/questionsdb.bad.xml")));
+        readFromXML("src/test/resources/questionsdb.xml");
+        readFromXML("src/test/resources/questionsdb.bad.xml");
     }
 }
