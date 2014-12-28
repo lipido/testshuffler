@@ -22,7 +22,7 @@ public class XmlTest {
 
     @Test
     public void marshallUnmarshalTest() throws JAXBException, SAXException {
-        Questionsdb db = new Questionsdb();
+        QuestionsDB db = new QuestionsDB();
         Question question;
         Answer answer;
 
@@ -34,21 +34,21 @@ public class XmlTest {
         answer = new Answer();
         answer.setValue("Apple");
         answer.setCorrect(false);
-        question.getAnswer().add(answer);
+        question.addAnswer(answer);
         answer = new Answer();
         answer.setValue("Banana");
         answer.setCorrect(false);
-        question.getAnswer().add(answer);
+        question.addAnswer(answer);
         answer = new Answer();
         answer.setValue("Orange");
         answer.setCorrect(true);
-        question.getAnswer().add(answer);
+        question.addAnswer(answer);
         answer = new Answer();
         answer.setValue("Strawberry");
         answer.setCorrect(false);
-        question.getAnswer().add(answer);
+        question.addAnswer(answer);
 
-        db.getQuestion().add(question);
+        db.addQuestion(question);
 
         // question 2
         question = new Question();
@@ -58,24 +58,24 @@ public class XmlTest {
         answer = new Answer();
         answer.setValue("Apple");
         answer.setCorrect(true);
-        question.getAnswer().add(answer);
+        question.addAnswer(answer);
         answer = new Answer();
         answer.setValue("Dell");
         answer.setCorrect(false);
-        question.getAnswer().add(answer);
+        question.addAnswer(answer);
         answer = new Answer();
         answer.setValue("Acer");
         answer.setCorrect(true);
-        question.getAnswer().add(answer);
+        question.addAnswer(answer);
         answer = new Answer();
         answer.setValue("Hewlett-packard");
         answer.setCorrect(false);
-        question.getAnswer().add(answer);
+        question.addAnswer(answer);
 
-        db.getQuestion().add(question);
+        db.addQuestion(question);
 
 
-        Marshaller marshaller = JAXBContext.newInstance(Questionsdb.class).createMarshaller();
+        Marshaller marshaller = JAXBContext.newInstance(QuestionsDB.class).createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -84,10 +84,10 @@ public class XmlTest {
 
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/XML/XMLSchema/v1.1");
         final Schema schema = schemaFactory.newSchema(new File("src/main/resources/questionsdb.xsd"));
-        Unmarshaller unmarshaller = JAXBContext.newInstance(Questionsdb.class).createUnmarshaller();
+        Unmarshaller unmarshaller = JAXBContext.newInstance(QuestionsDB.class).createUnmarshaller();
         unmarshaller.setSchema(schema);
 
-        Questionsdb dbUnmarshalled = (Questionsdb) unmarshaller.unmarshal(new ByteArrayInputStream(baos.toByteArray()));
+        QuestionsDB dbUnmarshalled = (QuestionsDB) unmarshaller.unmarshal(new ByteArrayInputStream(baos.toByteArray()));
 
         assertEquals(db, dbUnmarshalled);
 
@@ -99,7 +99,7 @@ public class XmlTest {
         final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/XML/XMLSchema/v1.1");
         final Schema schema = schemaFactory.newSchema(new File("src/main/resources/questionsdb.xsd"));
 
-        final JAXBContext context = JAXBContext.newInstance(Questionsdb.class);
+        final JAXBContext context = JAXBContext.newInstance(QuestionsDB.class);
         final Unmarshaller unmarshaller = context.createUnmarshaller();
         unmarshaller.setSchema(schema);
         unmarshaller.setEventHandler(new ValidationEventCollector());

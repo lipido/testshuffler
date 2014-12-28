@@ -9,6 +9,7 @@
 package es.uvigo.esei.testshuffler.entities;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,142 +17,56 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
-/**
- * <p>Java class for question complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="question">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="question" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="answer" type="{http://testshuffler.esei.uvigo.es}answer" maxOccurs="unbounded" minOccurs="2"/>
- *       &lt;/sequence>
- *       &lt;attribute name="complexity" use="required" type="{http://testshuffler.esei.uvigo.es}complexity" />
- *       &lt;attribute name="subject" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
- */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "question", propOrder = {
     "question",
-    "answer"
+    "answers"
 })
 public class Question {
 
     @XmlElement(required = true)
     protected String question;
-    @XmlElement(required = true)
-    protected List<Answer> answer;
+    @XmlElement(required = true, name = "answer")
+    protected List<Answer> answers;
     @XmlAttribute(name = "complexity", required = true)
     protected Complexity complexity;
     @XmlAttribute(name = "subject", required = true)
     protected String subject;
 
-    /**
-     * Gets the value of the question property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getQuestion() {
         return question;
     }
 
-    /**
-     * Sets the value of the question property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setQuestion(String value) {
         this.question = value;
     }
 
-    /**
-     * Gets the value of the answer property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the answer property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getAnswer().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Answer }
-     * 
-     * 
-     */
-    public List<Answer> getAnswer() {
-        if (answer == null) {
-            answer = new ArrayList<Answer>();
+    public List<Answer> getAnswers() {
+        if (answers == null) {
+            answers = new ArrayList<Answer>();
         }
-        return this.answer;
+        return Collections.unmodifiableList(this.answers);
     }
 
-    /**
-     * Gets the value of the complexity property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Complexity }
-     *     
-     */
+    public void addAnswer(Answer answer) {
+        if (answers == null) {
+            answers = new ArrayList<Answer>();
+        }
+        this.answers.add(answer);
+    }
+
     public Complexity getComplexity() {
         return complexity;
     }
 
-    /**
-     * Sets the value of the complexity property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Complexity }
-     *     
-     */
     public void setComplexity(Complexity value) {
         this.complexity = value;
     }
 
-    /**
-     * Gets the value of the subject property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getSubject() {
         return subject;
     }
 
-    /**
-     * Sets the value of the subject property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setSubject(String value) {
         this.subject = value;
     }
@@ -164,7 +79,7 @@ public class Question {
 
         Question question1 = (Question) o;
 
-        if (answer != null ? !answer.equals(question1.answer) : question1.answer != null) return false;
+        if (answers != null ? !answers.equals(question1.answers) : question1.answers != null) return false;
         if (complexity != question1.complexity) return false;
         if (question != null ? !question.equals(question1.question) : question1.question != null) return false;
         if (subject != null ? !subject.equals(question1.subject) : question1.subject != null) return false;
@@ -175,7 +90,7 @@ public class Question {
     @Override
     public int hashCode() {
         int result = question != null ? question.hashCode() : 0;
-        result = 31 * result + (answer != null ? answer.hashCode() : 0);
+        result = 31 * result + (answers != null ? answers.hashCode() : 0);
         result = 31 * result + (complexity != null ? complexity.hashCode() : 0);
         result = 31 * result + (subject != null ? subject.hashCode() : 0);
         return result;

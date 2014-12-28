@@ -37,11 +37,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Questionsdb }
+     * Create an instance of {@link QuestionsDB }
      * 
      */
-    public Questionsdb createQuestionsdb() {
-        return new Questionsdb();
+    public QuestionsDB createQuestionsdb() {
+        return new QuestionsDB();
     }
 
     /**
