@@ -1,7 +1,5 @@
-package es.uvigo.esei.testshuffler.core;
+package es.uvigo.esei.testshuffler.entities;
 
-import es.uvigo.esei.testshuffler.entities.*;
-import es.uvigo.esei.testshuffler.entities.Question;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
