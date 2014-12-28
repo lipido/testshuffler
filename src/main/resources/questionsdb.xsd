@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema targetNamespace="http://testshuffler.esei.uvigo.es"
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:ts="http://testshuffler.esei.uvigo.es">
+    <element name="questionsdb">
+        <complexType>
+            <sequence>
+                <element name="question" type="ts:question" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="question">
+        <sequence>
+            <element name="question" type="string" minOccurs="1" maxOccurs="1"/>
+            <element name="answer" type="ts:answer" minOccurs="2" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute name="complexity" type="ts:complexity" use="optional" default="medium"/>
+        <attribute name="subject" type="string" use="required"/>
+        <!--<assert test="count(answer[@correct = true()]) = 1"/>-->
+    </complexType>
+
+    <complexType name="answer">
+        <simpleContent>
+            <extension base="string">
+                <attribute name="correct" type="boolean" default="false"/>
+            </extension>
+        </simpleContent>
+    </complexType>
+
+    <simpleType name="complexity">
+        <restriction base="string">
+            <enumeration value="low"/>
+            <enumeration value="low-medium"/>
+            <enumeration value="medium"/>
+            <enumeration value="medium-high"/>
+            <enumeration value="high"/>
+        </restriction>
+    </simpleType>
+</schema>
