@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tns:questionsdb xmlns:tns="http://testshuffler.esei.uvigo.es"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://testshuffler.esei.uvigo.es questionsdb.xsd">
+        <question complexity="medium" subject="greetings">
+            <question>How do you do?</question>
+            <answer correct="true">Fine</answer>
+            <answer correct="false">Bad</answer>
+        </question>
+        <question complexity="medium" subject="greetings">
+            <question>What do you do?</question>
+            <answer correct="true">Work</answer>
+            <answer correct="false">Study</answer>
+        </question>
+</tns:questionsdb>
