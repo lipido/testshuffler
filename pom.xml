@@ -8,6 +8,8 @@
 	<properties>
 		<junit.version>4.11</junit.version>
 		<xerces2.xsd11.version>2.11.2</xerces2.xsd11.version>
+		<flying.saucer.version>9.0.7</flying.saucer.version>
+		<velocity.version>1.7</velocity.version>
 	</properties>
 
 	<build>
@@ -30,6 +32,21 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>${velocity.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xhtmlrenderer</groupId>
+			<artifactId>flying-saucer-core</artifactId>
+			<version>${flying.saucer.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xhtmlrenderer</groupId>
+			<artifactId>flying-saucer-pdf</artifactId>
+			<version>${flying.saucer.version}</version>
+		</dependency>		
 		<dependency>
 			<groupId>com.rackspace.apache</groupId>
 			<artifactId>xerces2-xsd11</artifactId>
